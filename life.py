@@ -1,4 +1,5 @@
 import random
+import time
 
 """
 def dead_state(width, height):
@@ -31,9 +32,9 @@ def render(board):
         out += '|'
         for y in range(width):
             if (board[x][y] == 1):
-                out += '\033[92m■\033[0m'
+                out += '■'
             else:
-                out += '\033[91m■\033[0m'
+                out += ' '
             
         out += '|'
         out += '\n'
@@ -44,7 +45,7 @@ def render(board):
 
 board = random_state(width, height)
 
-render(board)
+#render(board)
 
 def clamp(index, max):
     return(index % max)
@@ -83,9 +84,13 @@ def next_board_state(board):
     
     return new_board
 
-render(next_board_state(board))
+iteration = 0
 
-
+while iteration < 20:
+    render(board)
+    board = next_board_state(board)
+    iteration += 1
+    time.sleep(0.75)
 
 """
 1. Any live cell with 0 or 1 live neighbors becomes dead, because of underpopulation
